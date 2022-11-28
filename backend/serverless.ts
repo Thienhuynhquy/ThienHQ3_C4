@@ -9,7 +9,7 @@ import * as auth from '@functions/auth0Authorizer';
 
 const serverlessConfiguration: AWS = {
   org: 'fsoft',
-  service: 'serverless-todo-app',
+  service: 'serverless-todos-app',
   frameworkVersion: '3',
   plugins: [
     'serverless-aws-documentation',
@@ -33,7 +33,7 @@ const serverlessConfiguration: AWS = {
     environment: {
       TODOS_TABLE: 'Todos-${self:provider.stage}',
       TODOS_ID_INDEX: 'TodoIdIndex',
-      ATTACHMENT_S3_BUCKET: 'todo-images-125653915937-${self:provider.stage}',
+      ATTACHMENT_S3_BUCKET: 'todo-images-user-125653915937-${self:provider.stage}',
       ATTACHMENT_UPLOAD_URL_EXPIRATION: '300',
       ATTACHMENT_DOWNLOAD_URL_EXPIRATION: '300',
       JWKS_URL: 'https://dev-gdfcqcmab63tzby1.us.auth0.com/.well-known/jwks.json',
