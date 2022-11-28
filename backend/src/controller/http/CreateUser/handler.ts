@@ -1,32 +1,25 @@
 import 'source-map-support/register'
-
 import { APIGatewayProxyEvent, APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda'
-import { deleteUsers } from '../../../businessLogic/todos'
-import { getUserId } from '../../utils'
+import { CreateRequestUser } from '../../../requestDTO/CreateRequestUser'
+import { getUserId } from '../../utils';
+import { CreateUsers } from '../../../businessUser/User'
 import { applyCors, middyfy } from '@libs/handler-lambda'
 import { createLogger } from '@libs/logger'
 
-const logger = createLogger('deleteUsers')
+const logger = createLogger('CreateUsers')
 
 const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     logger.info('Caller event', event)
 
     const userId = getUserId(event)
-    const todoId = event.pathParameters?.todoId
-    if (!todoId) {
-        return {
-            statusCode: 400,
-            body: JSON.stringify({ error: 'Invalid todoId parameter' })
-        }
-    }
+    const newTodo = JSON.parse(JSON.stringify(event.body || '')) as CreateRequestUser
+    const item = await CreateUsers(userId, newTodo)
 
-    await deleteUsers(userId, todoId)
-
-    logger.info('Todo item was deleted', { userId, todoId })
+    logger.info('Todo item was created', { userId, todoId: item.todoId })
 
     return {
-        statusCode: 200,
-        body: ''
+        statusCode: 201,
+        body: JSON.stringify({ item })
     }
 }
 

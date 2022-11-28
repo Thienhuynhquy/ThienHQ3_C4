@@ -1,8 +1,8 @@
 import 'source-map-support/register'
 
 import { APIGatewayProxyEvent, APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda'
-import { updateUsers } from '../../../businessLogic/todos'
-import { UpdateTodoRequest } from '../../../requests/UpdateTodoRequest'
+import { updateUsers } from '../../../businessUser/User'
+import { UpdateRequestUser } from '../../../requestDTO/UpdateRequestUser'
 import { getUserId } from '../../utils'
 import { applyCors, middyfy } from '@libs/handler-lambda'
 import { createLogger } from '@libs/logger'
@@ -11,7 +11,7 @@ const logger = createLogger('updateUsers')
 
 const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     const todoId = event.pathParameters.todoId
-    const updatedTodo = JSON.parse(JSON.stringify(event.body || '')) as UpdateTodoRequest
+    const updatedTodo = JSON.parse(JSON.stringify(event.body || '')) as UpdateRequestUser
     const userId = getUserId(event)
     logger.info('Caller event', event)
 

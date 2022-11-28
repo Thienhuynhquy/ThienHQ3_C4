@@ -1,4 +1,4 @@
-export interface CreateTodoRequest {
+export interface CreateRequestUser {
   name: string
-  dueDate: string
+  timedate: string
 }

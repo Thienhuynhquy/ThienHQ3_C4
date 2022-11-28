@@ -1,20 +1,19 @@
 import * as SDK_AWS from 'aws-sdk'
 import * as AWSXRay from 'aws-xray-sdk'
 import { DocumentClient } from 'aws-sdk/clients/dynamodb'
-
-import { TodoItem } from '../models/TodoItem'
-import { TodoUpdate } from '../models/TodoUpdate'
+import { UserItem } from '../paramModle/UserItem'
+import { UpdateUser } from '../paramModle/UpdateUser'
 
 const AWS = AWSXRay.captureAWS(SDK_AWS)
 
-export class TodosAccess {
+export class UsersAccess {
     constructor(
         private readonly docClient: DocumentClient = new AWS.DynamoDB.DocumentClient(),
         private readonly Item = process.env.TABLE || '',
         private readonly todoIdIndex = process.env.INDEX_ID || ''
     ) { }
 
-    async getAllItems(userId: string): Promise<TodoItem[]> {
+    async getAllItems(userId: string): Promise<UserItem[]> {
         const results = await this.docClient
             .query({
                 TableName: this.Item,
@@ -25,10 +24,10 @@ export class TodosAccess {
             })
             .promise()
 
-        return results.Items as TodoItem[]
+        return results.Items as UserItem[]
     }
 
-    async findById(userId: string, todoId: string): Promise<TodoItem | null> {
+    async findById(userId: string, todoId: string): Promise<UserItem | null> {
         const results = await this.docClient
             .query({
                 TableName: this.Item,
@@ -46,24 +45,24 @@ export class TodosAccess {
             return null
         }
 
-        return results.Items[0] as TodoItem
+        return results.Items[0] as UserItem
     }
 
-    async createItem(todoItem: TodoItem): Promise<TodoItem> {
+    async createItem(UserItem: UserItem): Promise<UserItem> {
         await this.docClient
             .put({
                 TableName: this.Item,
-                Item: todoItem
+                Item: UserItem
             })
             .promise()
 
-        return todoItem
+        return UserItem
     }
 
     async updateItem(
         userId: string,
         todoId: string,
-        update: TodoUpdate
+        update: UpdateUser
     ): Promise<boolean> {
         const UpdateItem = await this.findById(userId, todoId)
         if (!UpdateItem) {
@@ -77,10 +76,10 @@ export class TodosAccess {
                 TableName: this.Item,
                 Key: { userId, createdAt },
                 UpdateExpression:
-                    'set #itemName = :itemName, dueDate = :dueDate, done = :done',
+                    'set #itemName = :itemName, timedate = :timedate, done = :done',
                 ExpressionAttributeValues: {
                     ':itemName': update.name,
-                    ':dueDate': update.dueDate,
+                    ':timedate': update.timedate,
                     ':done': update.done
                 },
                 ExpressionAttributeNames: {

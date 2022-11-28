@@ -1,15 +1,15 @@
 import type { AWS } from '@serverless/typescript';
 
-import * as CreateUsers from '@functions/CreateUsers';
-import * as deleteUsers from '@functions/deleteUsers';
-import * as generateUploadUrl from '@functions/generateUploadUrl';
-import * as getTodo from '@functions/getTodo';
-import * as updateUsers from '@functions/updateUsers';
-import * as auth from '@functions/auth0Authorizer';
+import * as CreateUsers from 'src/lambdas/http/CreateUser';
+import * as deleteUsers from 'src/lambdas/http/deleteUser';
+import * as generateUploadUrl from 'src/lambdas/http/generateUploadUrl';
+import * as getUser from 'src/lambdas/http/getUser';
+import * as updateUsers from 'src/lambdas/http/updateUser';
+import * as auth from 'src/lambdas/auth/auth0Authorizer';
 
 const serverlessConfiguration: AWS = {
   org: 'fsoft.thienhq3',
-  service: 'serverless-todos-app',
+  service: 'serverless-user-app',
   frameworkVersion: '3',
   plugins: [
     'serverless-aws-documentation',
@@ -44,10 +44,10 @@ const serverlessConfiguration: AWS = {
   },
   // import the function via paths
   functions: {
-    CreateTodo: CreateUsers.reqFunc,
-    DeleteTodo: deleteUsers.reqFunc,
+    CreateUser: CreateUsers.reqFunc,
+    DeleteUser: deleteUsers.reqFunc,
     GenerateUploadUrl: generateUploadUrl.reqFunc,
-    GetTodo: getTodo.reqFunc,
+    GetUser: getUser.reqFunc,
     UpdateTodo: updateUsers.reqFunc,
     Auth: auth.eventHandler,
   },
@@ -167,12 +167,12 @@ const serverlessConfiguration: AWS = {
       },
       models: [
         {
-          name: 'CreateTodoRequest',
+          name: 'CreateRequestUser',
           contentType: 'application/json',
           schema: CreateUsers.reqSchema,
         },
         {
-          name: 'UpdateTodoRequest',
+          name: 'UpdateRequestUser',
           contentType: 'application/json',
           schema: updateUsers.reqSchema,
         }

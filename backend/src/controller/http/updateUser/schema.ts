@@ -3,13 +3,13 @@ export default {
     'name': {
       'type': 'string'
     },
-    'dueDate': {
+    'timedate': {
       'type': 'string'
     },
     'done': {
       'type': 'boolean'
     }
   },
-  'required': ['name', 'dueDate', 'done'],
+  'required': ['name', 'timedate', 'done'],
   'additionalProperties': false
 } as const;

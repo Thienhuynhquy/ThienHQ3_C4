@@ -46,10 +46,10 @@ export class Todos extends React.PureComponent<TodosProps, TodosState> {
 
   onTodoCreate = async (event: React.ChangeEvent<HTMLButtonElement>) => {
     try {
-      const dueDate = this.calculateDueDate()
+      const timedate = this.calculatetimedate()
       const newTodo = await CreateUsers(this.props.auth.getIdToken(), {
         name: this.state.newTodoName,
-        dueDate
+        timedate
       })
       this.setState({
         todos: [...this.state.todos, newTodo],
@@ -76,7 +76,7 @@ export class Todos extends React.PureComponent<TodosProps, TodosState> {
       const todo = this.state.todos[pos]
       await patchTodo(this.props.auth.getIdToken(), todo.todoId, {
         name: todo.name,
-        dueDate: todo.dueDate,
+        timedate: todo.timedate,
         done: !todo.done
       })
       this.setState({
@@ -172,7 +172,7 @@ export class Todos extends React.PureComponent<TodosProps, TodosState> {
                 {todo.name}
               </Grid.Column>
               <Grid.Column width={3} floated="right">
-                {todo.dueDate}
+                {todo.timedate}
               </Grid.Column>
               <Grid.Column width={1} floated="right">
                 <Button
@@ -205,7 +205,7 @@ export class Todos extends React.PureComponent<TodosProps, TodosState> {
     )
   }
 
-  calculateDueDate(): string {
+  calculatetimedate(): string {
     const date = new Date()
     date.setDate(date.getDate() + 7)
 

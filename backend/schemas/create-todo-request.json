@@ -6,10 +6,10 @@
     "name": {
       "type": "string"
     },
-    "dueDate": {
+    "timedate": {
       "type": "string"
     }
   },
-  "required": ["name", "dueDate"],
+  "required": ["name", "timedate"],
   "additionalProperties": false
 }
