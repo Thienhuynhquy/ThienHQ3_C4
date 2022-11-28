@@ -1,14 +1,14 @@
 import type { AWS } from '@serverless/typescript';
 
-import * as CreateUsers from 'src/lambdas/http/CreateUser';
-import * as deleteUsers from 'src/lambdas/http/deleteUser';
-import * as generateUploadUrl from 'src/lambdas/http/generateUploadUrl';
-import * as getUser from 'src/lambdas/http/getUser';
-import * as updateUsers from 'src/lambdas/http/updateUser';
-import * as auth from 'src/lambdas/auth/auth0Authorizer';
+import * as CreateUsers from '@functions/CreateUser';
+import * as deleteUsers from '@functions/deleteUser';
+import * as generateUploadUrl from '@functions/generateUploadUrl';
+import * as getUser from '@functions/getUser';
+import * as updateUsers from '@functions/updateUser';
+import * as auth from '@functions/auth0Authorizer';
 
 const serverlessConfiguration: AWS = {
-  org: 'fsoft.thienhq3',
+  org: 'thienhq3',
   service: 'serverless-user-app',
   frameworkVersion: '3',
   plugins: [

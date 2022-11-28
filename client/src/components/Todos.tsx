@@ -16,7 +16,7 @@ import {
 
 import { CreateUsers, deleteUsers, getTodos, patchTodo } from '../api/todos-api'
 import Auth from '../auth/Auth'
-import { Todo } from '../types/Todo'
+import { User } from '../types/Todo'
 
 interface TodosProps {
   auth: Auth
@@ -24,7 +24,7 @@ interface TodosProps {
 }
 
 interface TodosState {
-  todos: Todo[]
+  todos: User[]
   newTodoName: string
   loadingTodos: boolean
 }

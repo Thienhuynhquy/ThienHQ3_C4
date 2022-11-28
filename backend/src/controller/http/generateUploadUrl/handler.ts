@@ -1,6 +1,6 @@
 import 'source-map-support/register'
 import { APIGatewayProxyEvent, APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda'
-import { getAttachmentUploadUrl } from '../../../businessLogic/todos'
+import { getAttachmentUploadUrl } from '../../../businessUser/User'
 import { getUserId } from '../../utils'
 import { applyCors, middyfy } from '@libs/handler-lambda'
 import { createLogger } from '@libs/logger'

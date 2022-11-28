@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid'
 import { UserItem } from '../paramModle/UserItem'
-import { UsersAccess } from '../dataLayer/usersAccess'
+import { UsersAccess } from '../dataModle/usersAccess'
 import { AttachmentsUtils } from '@libs/attachments-utils'
 import { CreateRequestUser } from '../requestDTO/CreateRequestUser'
 import { UpdateRequestUser } from '../requestDTO/UpdateRequestUser'
