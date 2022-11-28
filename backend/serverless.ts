@@ -1,14 +1,14 @@
 import type { AWS } from '@serverless/typescript';
 
-import * as createTodo from '@functions/createTodo';
-import * as deleteTodo from '@functions/deleteTodo';
+import * as CreateUsers from '@functions/CreateUsers';
+import * as deleteUsers from '@functions/deleteUsers';
 import * as generateUploadUrl from '@functions/generateUploadUrl';
 import * as getTodo from '@functions/getTodo';
-import * as updateTodo from '@functions/updateTodo';
+import * as updateUsers from '@functions/updateUsers';
 import * as auth from '@functions/auth0Authorizer';
 
 const serverlessConfiguration: AWS = {
-  org: 'fsoft',
+  org: 'fsoft.thienhq3',
   service: 'serverless-todos-app',
   frameworkVersion: '3',
   plugins: [
@@ -31,8 +31,8 @@ const serverlessConfiguration: AWS = {
     },
     // env variables
     environment: {
-      TODOS_TABLE: 'Todos-${self:provider.stage}',
-      TODOS_ID_INDEX: 'TodoIdIndex',
+      TABLE: 'Todos-${self:provider.stage}',
+      INDEX_ID: 'TodoIdIndex',
       ATTACHMENT_S3_BUCKET: 'todo-images-user-125653915937-${self:provider.stage}',
       ATTACHMENT_UPLOAD_URL_EXPIRATION: '300',
       ATTACHMENT_DOWNLOAD_URL_EXPIRATION: '300',
@@ -44,11 +44,11 @@ const serverlessConfiguration: AWS = {
   },
   // import the function via paths
   functions: {
-    CreateTodo: createTodo.reqFunc,
-    DeleteTodo: deleteTodo.reqFunc,
+    CreateTodo: CreateUsers.reqFunc,
+    DeleteTodo: deleteUsers.reqFunc,
     GenerateUploadUrl: generateUploadUrl.reqFunc,
     GetTodo: getTodo.reqFunc,
-    UpdateTodo: updateTodo.reqFunc,
+    UpdateTodo: updateUsers.reqFunc,
     Auth: auth.eventHandler,
   },
   // resources config
@@ -108,7 +108,7 @@ const serverlessConfiguration: AWS = {
           ],
           LocalSecondaryIndexes: [
             {
-              IndexName: '${self:provider.environment.TODOS_ID_INDEX}',
+              IndexName: '${self:provider.environment.INDEX_ID}',
               KeySchema: [
                 {
                   AttributeName: 'userId',
@@ -125,7 +125,7 @@ const serverlessConfiguration: AWS = {
             },
           ],
           BillingMode: 'PAY_PER_REQUEST',
-          TableName: '${self:provider.environment.TODOS_TABLE}',
+          TableName: '${self:provider.environment.TABLE}',
         }
       },
       AttachmentsBucket: {
@@ -169,12 +169,12 @@ const serverlessConfiguration: AWS = {
         {
           name: 'CreateTodoRequest',
           contentType: 'application/json',
-          schema: createTodo.reqSchema,
+          schema: CreateUsers.reqSchema,
         },
         {
           name: 'UpdateTodoRequest',
           contentType: 'application/json',
-          schema: updateTodo.reqSchema,
+          schema: updateUsers.reqSchema,
         }
       ]
     }

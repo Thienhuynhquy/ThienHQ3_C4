@@ -25,7 +25,7 @@ export const reqFunc = {
             Action: [
                 'dynamodb:Query',
             ],
-            Resource: 'arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}/index/${self:provider.environment.TODOS_ID_INDEX}'
+            Resource: 'arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TABLE}/index/${self:provider.environment.INDEX_ID}'
         },
     ]
 };

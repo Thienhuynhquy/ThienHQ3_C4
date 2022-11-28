@@ -1,7 +1,7 @@
 import 'source-map-support/register'
 import { APIGatewayProxyEvent, APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda'
 import { TodoItem } from '../../../models/TodoItem'
-import { getTodosForUser as getTodosForUser } from '../../../businessLogic/todos'
+import { getUser as getUser } from '../../../businessLogic/todos'
 import { getUserId } from '../../utils';
 import { applyCors, middyfy } from '@libs/handler-lambda'
 import { createLogger } from '@libs/logger'
@@ -12,7 +12,7 @@ const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Pro
     logger.info('Caller event', event)
 
     const userId = getUserId(event)
-    const todos: TodoItem[] = await getTodosForUser(userId)
+    const todos: TodoItem[] = await getUser(userId)
 
     logger.info('Todo items fetched', { userId, count: todos.length })
 

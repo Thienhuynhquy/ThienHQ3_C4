@@ -1,13 +1,13 @@
 import 'source-map-support/register'
 
 import { APIGatewayProxyEvent, APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda'
-import { updateTodo } from '../../../businessLogic/todos'
+import { updateUsers } from '../../../businessLogic/todos'
 import { UpdateTodoRequest } from '../../../requests/UpdateTodoRequest'
 import { getUserId } from '../../utils'
 import { applyCors, middyfy } from '@libs/handler-lambda'
 import { createLogger } from '@libs/logger'
 
-const logger = createLogger('updateTodo')
+const logger = createLogger('updateUsers')
 
 const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     const todoId = event.pathParameters.todoId
@@ -22,7 +22,7 @@ const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Pro
         }
     }
 
-    const updated = await updateTodo(userId, todoId, updatedTodo)
+    const updated = await updateUsers(userId, todoId, updatedTodo)
     if (!updated) {
         logger.info('Todo item does not exist', { userId, todoId })
         return {

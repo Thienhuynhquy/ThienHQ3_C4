@@ -17,7 +17,7 @@ export async function getTodos(idToken: string): Promise<Todo[]> {
   return response.data.items
 }
 
-export async function createTodo(
+export async function CreateUsers(
   idToken: string,
   newTodo: CreateTodoRequest
 ): Promise<Todo> {
@@ -43,7 +43,7 @@ export async function patchTodo(
   })
 }
 
-export async function deleteTodo(
+export async function deleteUsers(
   idToken: string,
   todoId: string
 ): Promise<void> {

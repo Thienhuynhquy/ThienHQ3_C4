@@ -1,12 +1,12 @@
 import 'source-map-support/register'
 
 import { APIGatewayProxyEvent, APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda'
-import { deleteTodo } from '../../../businessLogic/todos'
+import { deleteUsers } from '../../../businessLogic/todos'
 import { getUserId } from '../../utils'
 import { applyCors, middyfy } from '@libs/handler-lambda'
 import { createLogger } from '@libs/logger'
 
-const logger = createLogger('deleteTodo')
+const logger = createLogger('deleteUsers')
 
 const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     logger.info('Caller event', event)
@@ -20,7 +20,7 @@ const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Pro
         }
     }
 
-    await deleteTodo(userId, todoId)
+    await deleteUsers(userId, todoId)
 
     logger.info('Todo item was deleted', { userId, todoId })
 
