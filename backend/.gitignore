@@ -1,0 +1,18 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
+# Webpack directories
+.webpack
+
+# Local DynamoDb
+.dynamodb
+
+# ESbuild directories
+.esbuild
+
+# Client shortcut
+*.lnk

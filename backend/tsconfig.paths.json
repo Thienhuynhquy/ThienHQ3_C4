@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@functions/*": [
+        "src/lambda/http/*",
+        "src/lambda/s3/*",
+        "src/lambda/websocket/*",
+        "src/lambda/dynamoDb/*",
+        "src/lambda/auth/*",
+      ],
+      "@libs/*": [
+        "src/libs/*"
+      ]
+    }
+  }
+}
