@@ -33,10 +33,10 @@ const serverlessConfiguration: AWS = {
     environment: {
       TODOS_TABLE: 'Todos-${self:provider.stage}',
       TODOS_ID_INDEX: 'TodoIdIndex',
-      ATTACHMENT_S3_BUCKET: 'todo-images-276364682433-${self:provider.stage}',
+      ATTACHMENT_S3_BUCKET: 'todo-images-125653915937-${self:provider.stage}',
       ATTACHMENT_UPLOAD_URL_EXPIRATION: '300',
       ATTACHMENT_DOWNLOAD_URL_EXPIRATION: '300',
-      JWKS_URL: 'https://thinhtpt-dev.us.auth0.com/.well-known/jwks.json',
+      JWKS_URL: 'https://dev-gdfcqcmab63tzby1.us.auth0.com/.well-known/jwks.json',
     },
     // IAM role
     iamRoleStatements: [
