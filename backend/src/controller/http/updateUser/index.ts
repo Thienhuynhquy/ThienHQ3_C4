@@ -7,12 +7,12 @@ export const reqFunc = {
         {
             http: {
                 method: 'patch',
-                path: 'todos/{todoId}',
+                path: 'users/{todoId}',
                 cors: true,
                 authorizer: 'Auth',
                 request: {
                     schemas: {
-                        "application/json": "${file(schemas/update-todo-request.json)}",
+                        "application/json": "${file(schemas/update-user-request.json)}",
                     },
                 },
             },

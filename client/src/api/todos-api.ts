@@ -7,7 +7,7 @@ import { UpdateRequestUser } from '../types/UpdateTodoRequest';
 export async function getTodos(idToken: string): Promise<User[]> {
   console.log('Fetching todos')
 
-  const response = await Axios.get(`${apiEndpoint}/todos`, {
+  const response = await Axios.get(`${apiEndpoint}/users`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${idToken}`
@@ -21,7 +21,7 @@ export async function CreateUsers(
   idToken: string,
   newTodo: CreateRequestUser
 ): Promise<User> {
-  const response = await Axios.post(`${apiEndpoint}/todos`, JSON.stringify(newTodo), {
+  const response = await Axios.post(`${apiEndpoint}/users`, JSON.stringify(newTodo), {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${idToken}`
@@ -35,7 +35,7 @@ export async function patchTodo(
   todoId: string,
   updatedTodo: UpdateRequestUser
 ): Promise<void> {
-  await Axios.patch(`${apiEndpoint}/todos/${todoId}`, JSON.stringify(updatedTodo), {
+  await Axios.patch(`${apiEndpoint}/users/${todoId}`, JSON.stringify(updatedTodo), {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${idToken}`
@@ -47,7 +47,7 @@ export async function deleteUsers(
   idToken: string,
   todoId: string
 ): Promise<void> {
-  await Axios.delete(`${apiEndpoint}/todos/${todoId}`, {
+  await Axios.delete(`${apiEndpoint}/users/${todoId}`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${idToken}`
@@ -59,7 +59,7 @@ export async function getUploadUrl(
   idToken: string,
   todoId: string
 ): Promise<string> {
-  const response = await Axios.post(`${apiEndpoint}/todos/${todoId}/attachment`, '', {
+  const response = await Axios.post(`${apiEndpoint}/users/${todoId}/attachment`, '', {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${idToken}`

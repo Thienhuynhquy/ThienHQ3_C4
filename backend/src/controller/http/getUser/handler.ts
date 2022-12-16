@@ -12,13 +12,13 @@ const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Pro
     logger.info('Caller event', event)
 
     const userId = getUserId(event)
-    const todos: UserItem[] = await getUser(userId)
+    const user: UserItem[] = await getUser(userId)
 
-    logger.info('Todo items fetched', { userId, count: todos.length })
+    logger.info('User items fetched', { userId, count: user.length })
 
     return {
         statusCode: 200,
-        body: JSON.stringify({ items: todos })
+        body: JSON.stringify({ items: user })
     }
 }
 

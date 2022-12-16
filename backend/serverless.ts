@@ -31,9 +31,9 @@ const serverlessConfiguration: AWS = {
     },
     // env variables
     environment: {
-      TABLE: 'Todos-${self:provider.stage}',
-      INDEX_ID: 'TodoIdIndex',
-      ATTACHMENT_S3_BUCKET: 'todo-images-user-125653915937-${self:provider.stage}',
+      TABLE: 'User-${self:provider.stage}',
+      INDEX_ID: 'UserIdIndex',
+      ATTACHMENT_S3_BUCKET: 'user-images-user-125653915937-${self:provider.stage}',
       ATTACHMENT_UPLOAD_URL_EXPIRATION: '300',
       ATTACHMENT_DOWNLOAD_URL_EXPIRATION: '300',
       JWKS_URL: 'https://dev-gdfcqcmab63tzby1.us.auth0.com/.well-known/jwks.json',

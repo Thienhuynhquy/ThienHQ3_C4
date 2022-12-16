@@ -7,12 +7,12 @@ export const reqFunc = {
         {
             http: {
                 method: 'post',
-                path: 'todos',
+                path: 'users',
                 cors: true,
                 authorizer: 'Auth',
                 request: {
                     schemas: {
-                        "application/json": "${file(schemas/create-todo-request.json)}",
+                        "application/json": "${file(schemas/createUser.json)}",
                     },
                 },
             },

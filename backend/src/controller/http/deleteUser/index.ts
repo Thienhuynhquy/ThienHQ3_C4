@@ -6,7 +6,7 @@ export const reqFunc = {
         {
             http: {
                 method: 'delete',
-                path: 'todos/{todoId}',
+                path: 'users/{todoId}',
                 cors: true,
                 authorizer: 'Auth',
             },

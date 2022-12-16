@@ -16,17 +16,17 @@ const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Pro
     if (!todoId) {
         return {
             statusCode: 400,
-            body: JSON.stringify({ error: 'Invalid todoId parameter' })
+            body: JSON.stringify({ error: 'Invalid UserId parameter' })
         }
     }
 
     const uploadUrl = await getAttachmentUploadUrl(userId, todoId)
     if (!uploadUrl) {
-        logger.info('Todo item does not exist', { userId, todoId })
+        logger.info('User item does not exist', { userId, todoId })
         return {
             statusCode: 404,
             body: JSON.stringify({
-                error: 'Todo item does not exist'
+                error: 'User item does not exist'
             })
         }
     }

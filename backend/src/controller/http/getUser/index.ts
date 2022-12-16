@@ -6,7 +6,7 @@ export const reqFunc = {
         {
             http: {
                 method: 'get',
-                path: 'todos',
+                path: 'users',
                 cors: true,
                 authorizer: 'Auth',
             },

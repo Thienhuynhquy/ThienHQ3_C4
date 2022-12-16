@@ -16,13 +16,13 @@ const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Pro
     if (!todoId) {
         return {
             statusCode: 400,
-            body: JSON.stringify({ error: 'Invalid todoId parameter' })
+            body: JSON.stringify({ error: 'Invalid UserId parameter' })
         }
     }
 
     await deleteUsers(userId, todoId)
 
-    logger.info('Todo item was deleted', { userId, todoId })
+    logger.info('User item was deleted', { userId, todoId })
 
     return {
         statusCode: 200,

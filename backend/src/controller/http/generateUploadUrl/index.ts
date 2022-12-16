@@ -6,7 +6,7 @@ export const reqFunc = {
         {
             http: {
                 method: 'post',
-                path: 'todos/{todoId}/attachment',
+                path: 'users/{todoId}/attachment',
                 cors: true,
                 authorizer: 'Auth',
             },

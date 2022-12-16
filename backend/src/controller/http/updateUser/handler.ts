@@ -10,30 +10,30 @@ import { createLogger } from '@libs/logger'
 const logger = createLogger('updateUsers')
 
 const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-    const todoId = event.pathParameters.todoId
-    const updatedTodo = JSON.parse(JSON.stringify(event.body || '')) as UpdateRequestUser
+    const id = event.pathParameters.todoId
+    const updatedUser = JSON.parse(JSON.stringify(event.body || '')) as UpdateRequestUser
     const userId = getUserId(event)
     logger.info('Caller event', event)
 
-    if (!todoId) {
+    if (!id) {
         return {
             statusCode: 400,
-            body: JSON.stringify({ error: 'Invalid todoId parameter' })
+            body: JSON.stringify({ error: 'Invalid UserId parameter' })
         }
     }
 
-    const updated = await updateUsers(userId, todoId, updatedTodo)
+    const updated = await updateUsers(userId, id, updatedUser)
     if (!updated) {
-        logger.info('Todo item does not exist', { userId, todoId })
+        logger.info('User item does not exist', { userId, id })
         return {
             statusCode: 404,
             body: JSON.stringify({
-                error: 'Todo item does not exist'
+                error: 'User item does not exist'
             })
         }
     }
 
-    logger.info('Todo item was updated', { userId, todoId })
+    logger.info('User item was updated', { userId, id })
 
     return {
         statusCode: 200,
